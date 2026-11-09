@@ -94,7 +94,7 @@ input[type=file]{display:none}
 const $=id=>document.getElementById(id);
 let songs=[], playlists=[], currentPlaylist=null, currentIndex=-1, currentObjectUrl=null, searchTimer=null;
 // URL del Worker de Cloudflare que protege la clave de YouTube. No pongas aquí la clave API.
-const SEARCH_API_URL = 'PEGA_AQUI_LA_URL_DE_TU_WORKER';
+const SEARCH_API_URL = 'https://mysound-api.arromdaniii.workers.dev';
 const audio=$('audio');
 function persist(){try{localStorage.setItem('mysound_meta',JSON.stringify({songs:songs.map(({id,name,artist,source,url,playlistIds})=>({id,name,artist,source,url,playlistIds})),playlists}));}catch(e){}}
 function load(){try{const d=JSON.parse(localStorage.getItem('mysound_meta')||'{}');songs=d.songs||[];playlists=d.playlists||[];}catch(e){}render();}
