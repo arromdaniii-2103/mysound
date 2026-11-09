@@ -144,6 +144,20 @@ async function searchYouTube(q,target){
 }
 $('search').addEventListener('input',e=>{clearTimeout(searchTimer);searchTimer=setTimeout(()=>searchYouTube(e.target.value,'homeSearchResults'),450);});
 $('search2').addEventListener('input',e=>{clearTimeout(searchTimer);searchTimer=setTimeout(()=>searchYouTube(e.target.value,'searchResults'),450);});
+  $('search2').addEventListener('keydown',e=>{
+ if(e.key==='Enter'){
+  e.preventDefault();
+  clearTimeout(searchTimer);
+  searchYouTube(e.target.value,'searchResults');
+ }
+});
+$('search').addEventListener('keydown',e=>{
+ if(e.key==='Enter'){
+  e.preventDefault();
+  clearTimeout(searchTimer);
+  searchYouTube(e.target.value,'homeSearchResults');
+ }
+});
 if('serviceWorker' in navigator && location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(()=>{});
 load();
 </script>
