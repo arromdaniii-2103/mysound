@@ -1,0 +1,10 @@
+{
+  "name": "MySound - Tu música",
+  "short_name": "MySound",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#101311",
+  "theme_color": "#101311",
+  "description": "Tu biblioteca musical personal",
+  "icons": [{"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]
+}
