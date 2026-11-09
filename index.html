@@ -119,6 +119,24 @@ function next(){if(!songs.length)return;playSong(songs[(currentIndex+1+songs.len
 function previous(){if(!songs.length)return;playSong(songs[(currentIndex-1+songs.length)%songs.length].id)}
 audio.addEventListener('ended',next);audio.addEventListener('pause',()=>{$('playBtn').textContent='▶'});audio.addEventListener('play',()=>{$('playBtn').textContent='Ⅱ'});
 function search(q,target){const v=q.toLowerCase().trim();const found=songs.filter(s=>(s.name+' '+s.artist).toLowerCase().includes(v));return v?trackHtml(found)||'':'';}
+  function saveYouTube(id){
+ const x=(window.mysoundResults||[]).find(y=>y.videoId===id);
+ if(!x)return;
+ let s=songs.find(y=>y.source==='youtube'&&y.videoId===id);
+ if(!s){
+  s={id:uid(),name:x.title,artist:x.channelTitle,source:'youtube',videoId:id,thumbnail:x.thumbnail,playlistIds:[]};
+  songs.push(s);
+  persist();
+  render();
+ }
+ alert('Añadida a tu biblioteca.');
+}
+
+function playYouTubeResult(id){
+ saveYouTube(id);
+ const s=songs.find(y=>y.source==='youtube'&&y.videoId===id);
+ if(s)playSong(s.id);
+}
 async function searchYouTube(q,target){
  const v=q.trim();
  if(!v){$(target).innerHTML='';return;}
