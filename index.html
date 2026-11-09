@@ -130,6 +130,7 @@ async function searchYouTube(q,target){
  try{
    const r=await fetch(SEARCH_API_URL.replace(/\/$/,'')+'/search?q='+encodeURIComponent(v));
    const d=await r.json();
+   console.log('RESPUESTA YOUTUBE:',d);
    if(!r.ok)throw new Error(d.error?.message||d.error||'Error');
    window.mysoundResults=(d.items||[]).filter(x=>x.id?.videoId).map(x=>({
      videoId:x.id.videoId,
